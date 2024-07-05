@@ -1,0 +1,533 @@
+  
+
+  /* GLOBAL STYLES*/
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* HEDER STYLES */
+  header {
+    background-color: white;
+    color: #161515;
+    padding: 10px 20px;
+    box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  
+  .company-name {
+      margin-right: 20px;
+    }
+    
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #d7d7d7;
+      border-radius: 4px;
+      padding: 4px 5px;
+    }
+    
+    .search-bar input {
+      border: none;
+      outline: none;
+      margin-right: 5px;
+      background-color: #d7d7d7;
+    }
+    
+    .search-bar button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+   }
+   .search-bar button i{
+      color:black;
+   }
+  
+  .profile-icons i {
+    margin-left: 20px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    background-color: #36587a;
+    color: #fff;
+    width: 200px;
+    padding: 20px;
+    position: fixed;
+    top: 95px;
+    bottom: 0;
+    overflow-y: auto;
+    position: fixed;
+  }
+  
+  .sidebar button {
+    display: block;
+    margin-bottom: 12px;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .sidebar button:hover {
+    background-color: #c7cacc;
+    color:rgb(8, 8, 8);
+  }
+  
+  .sidebar i {
+    margin-right: 10px;
+  
+  }
+  
+  aside a{
+    text-decoration:none;
+    color:white;
+  }
+  /* MAIN CONTENT STYLES*/
+  .main-content {
+    margin-left: 250px;
+    padding: 20px;
+  }
+  
+  /* Styling for individual sections */
+  .main-content > div {
+    display: none;
+  }
+  
+  
+  
+  /*HOME STYLES*/
+  .home {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+  }
+  
+  .home p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 15px;
+  }
+  
+  .home ul {
+      list-style-type: disc;
+      color: #666;
+      padding-left: 20px;
+      margin-bottom: 15px;
+  }
+  
+  .home ul li {
+      margin-bottom: 5px;
+  }
+  
+  .shortcuts {
+      margin-top: 20px;
+  }
+  
+  .shortcuts button {
+      padding: 10px 20px;
+      border: none;
+      background-color:#0c3e5b;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+  }
+  
+  .shortcuts button i {
+      margin-right: 5px;
+  }
+  
+  .shortcuts button:hover {
+      background-color: #2d78a4;
+  }
+  /* TABLE STYLES */
+  .user-table,
+  .records-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .user-table th,
+  .records-table th,
+  .user-table td,
+  .records-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .user-table th,
+  .records-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .user-table td,
+  .records-table td {
+    background-color: #fff;
+  }
+  
+  .user-table tbody tr:nth-child(even),
+  .records-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Button styles */
+  button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #0c3e5b;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #2d78a4;
+  }
+  
+  /* Icon button styles */
+  button i {
+    margin-right: 5px;
+  }
+
+  #adminPrivilegesBtn{
+    padding: 10px 20px;
+    border: none;
+    background-color: #0c3e5b;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin:5px;
+  }
+  
+  
+  
+  
+  /* SETTINGS SECTION STYLES */
+  
+  .settings {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .settings h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+  }
+  
+  .settings .section {
+      margin-bottom: 20px;
+  }
+  
+  .settings h3 {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 10px;
+  }
+  
+  .settings .form-group {
+      margin-bottom: 10px;
+  }
+  
+  .settings label {
+      display: block;
+      color: #666;
+      font-weight: bold;
+  }
+  
+  .settings input[type="checkbox"] {
+      margin-top: 5px;
+  }
+  
+  .settings .toggle-label {
+      display: flex;
+      align-items: center;
+  }
+  
+  .settings input[type="email"],
+  .settings input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+  
+  .settings button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #0c3e5b;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+  }
+  
+  .settings button i {
+      margin-right: 5px;
+  }
+  
+  .settings button:hover {
+      background-color: #0056b3;
+  }
+  
+  /* README STYLES*/
+  
+  .readme {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    .readme h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .readme p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+  
+    .readme ul {
+      list-style-type: disc;
+      color: #666;
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+  
+    .readme ul li {
+      margin-bottom: 5px;
+    }
+
+   /* Dialog Overlay */
+
+   #addUserModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#addUserModal button {
+    margin-top: 10px;
+}
+/* activities*/
+/* General styling for the license-management container */
+#license-management {
+    width: 100%;
+    max-width: 1200px; 
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: #f5f5f5;
+}
+
+/* Styling for the canvas elements */
+canvas {
+    display: block;
+    margin-bottom: 30px;
+}
+
+/*  Adding spacing between the charts */
+.chart-container {
+    margin-bottom: 40px;
+}
+
+          /* Style for the record-management div */
+          #record-management {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Style for the dialog overlay */
+        #dialog-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* Style for the dialog box */
+        #update-dialog,#user-dialog {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            width: 400px;
+            max-width: 90%;
+            z-index: 1001;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Style for the close button */
+        .close-btn {
+            background-color:transparent;
+            color: rgb(11, 11, 11);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 29px;
+            position: absolute;
+            top: -10px;
+            right: -2px;   
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: transparent;
+        }
+
+        
+        .add-user-btn {
+            background-color:#2a4978 ;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .add-user-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Style for the form */
+        #add-user-form {
+            margin-top: 20px;
+        }
+
+        /* Style for form labels and inputs */
+        #add-user-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+
+      #update-user-form input,  #add-user-form input, #add-user-form select,#update-user-form select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #update-user-form input:focus,#add-user-form input:focus, #add-user-form select:focus {
+            border-color: #2a4978;
+            box-shadow: 0 0 5px rgba(24, 71, 122, 0.5);
+        }
+
+       #update-user-form button, #add-user-form button {
+            background-color: #214965;
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 30px;
+            font-size: 16px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+       #add-user-form button:hover {
+            background-color: #132f4a;
+            transform: translateY(-2px);
+        }
+
+        /* Style for the form header */
+        #user-dialog h2 {
+            margin-top: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .profile-icons {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip above the icon */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.profile-icons:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
