@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class CreateLicensesTable extends Migration
 {
     public function up()
@@ -16,8 +17,8 @@ class CreateLicensesTable extends Migration
             $table->decimal('license_fees');
             $table->decimal('penalty_fees');
             $table->decimal('other_fees');
-         
-           
+            $table->string('payment_proof')->nullable(); // New column
+            $table->string('business_permission_proof')->nullable(); // New column
             $table->timestamps();
         });
     }

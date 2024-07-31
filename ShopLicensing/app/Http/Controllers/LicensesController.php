@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\License;
+use App\Models\Licenses;
 
 class LicensesController extends Controller
 {
@@ -26,7 +26,7 @@ class LicensesController extends Controller
         ]);
 
         // Create a new License instance
-        $license = License::create($validatedData);
+        $license = Licenses::create($validatedData);
 
         // Optionally, you can redirect or return a response here
         return redirect()->back()->with('success', 'License details saved successfully!');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Customer;
+use App\Models\Licenses;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -26,76 +27,42 @@ class HomeController extends Controller
      */
     public function Homepage()
     {
-        return view('home');
+        return view('RegistrationPage');
     }
-   
+
+        
+
         public function indexpage(Request $request)
         {
-            $data = $request->only([
-                'account_number',
-                'tin_number',
-                'class_type_goods',
-                'vending_details',
-                'floor_area',
-                'range_number',
-                'address_premises',
-                'license_name',
-                'trading_as',
-                'owner_name'
-            ]);
-        
-            return view('index', compact('data'));
+            // Fetch all users
+            $users = User::all();
+    
+            // Fetch all customers
+            $customers = Customer::all();
+    
+            // Fetch all licenses
+            $licenses = Licenses::all();
+    
+            return view('ShopLicensingHomePage', compact('users', 'customers', 'licenses'));
         }
-        
-
-
     public function AdminDashboard()
     {
         $users = User::all(); 
         $customers = Customer::all(); // Fetch all customers from the database
         // Pass the data to the view
-        return view('AdminDashboard', ['users' => $users]);
+        return view('AdminManagement', ['users' => $users]);
         
      
 
     }
 
-    public function RetailOption(){
-        return view('RetailHomePageOption');
-    }
-    public function WholesaleOption(){
-        return view('WholesaleHomePageOption');
-    }
-
-
+  
     public function edit(User $user){
         return view ('Edit',['users'=>$user]);
 
     }
   
 
-   //public function update(User $user, Request $request)
-    //{
-       // $data = $request->validate([
-         //  'name' => 'required',
-          //  'email' => 'required|email',
-          // 'password' => 'required|min:8',  //  minimum length for passwords
-         //  'is_admin' => 'required|boolean',
-     //]);
-    
-         //Hashing the password
-      //  $data['password'] = Hash::make($data['password']);
-    
-    //    Update the user record
-     //   $user->update($data);
-    
-     //   return redirect(route('AdminDashboard'))->with('success','User updated successfully');
-   // }//
-    public function destroy(User $user)
-{
-    //$user->delete();
-    //return response()->json(['message' => 'User deleted successfully.']);
-}
 
         public function store(Request $request)
         {
@@ -138,7 +105,57 @@ class HomeController extends Controller
             return redirect()->back()->with('success', 'User updated successfully');
         }
     
+
+         // Function to search customers
+    public function searchCustomer(Request $request)
+    {
+        $query = $request->input('query');
+        $customers = Customer::where('account_number', 'like', "%$query%")
+            ->orWhere('tin_number', 'like', "%$query%")
+            ->get();
+        return response()->json($customers);
+    }
+
+    // Function to search licenses
+    public function searchLicense(Request $request)
+    {
+        $query = $request->input('query');
+        $licenses = Licenses::where('account_number', 'like', "%$query%")
+            ->orWhere('year', 'like', "%$query%")
+            ->get();
+        return response()->json($licenses);
+    }
+
+    public function checkOutstandingPayments(Request $request)
+{
+    $accountNumber = $request->input('account_number');
+    $currentYear = now()->year;
+
+    // Check for outstanding payments
+    $lastPayment = Licenses::where('account_number', $accountNumber)
+                    ->orderBy('expiring_date', 'desc')
+                    ->first();
+
+    if ($lastPayment && $lastPayment->year == $currentYear) {
+        return response()->json([
+            'status' => 'paid',
+            'last_payment_year' => $lastPayment->year,
+        ]);
+    } elseif ($lastPayment) {
+        return response()->json([
+            'status' => 'outstanding',
+            'last_payment_year' => $lastPayment->year,
+        
+        ]);
+    } else {
+        return response()->json([
+            'status' => 'not_found',
+        ]);
+    }
 }
+
+}
+
 
 
 

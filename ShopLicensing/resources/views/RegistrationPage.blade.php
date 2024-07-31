@@ -7,162 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/all.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/all.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 60%;
-    margin: auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-top: 50px;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-label {
-    display: block;
-    margin-top: 10px;
-    color: #555;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button[type="submit"] {
-    background-color: #103f54;
-    color: #fff;
-}
-
-button[type="button"] {
-    background-color: #274e78;
-    color: #fff;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #d7d7d7;
-    border-radius: 4px;
-    padding: 4px 5px;
-    width: 280px;
-    margin-left: 290px;
-}
-
-.search-bar input {
-    border: none;
-    outline: none;
-    margin-right: 5px;
-    background-color: #d7d7d7;
-}
-
-
-button[type=submit]:hover {
-background-color: grey;
-}
-
-.search-bar button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.search-bar button i {
-    color: black;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content label {
-    display: block;
-    padding: 8px 16px;
-    cursor: pointer;
-}
-
-.dropdown-content label:hover {
-    background-color: #f1f1f1;
-}
-
-/* Styles for the logout button */
-#logout-button {
-    background-color: #e74c3c; 
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-#logout-button i {
-    margin-right: 8px; /* Space between icon and text */
-}
-
-#logout-button:hover {
-    background-color: #c0392b; /* Darker red on hover */
-}
-
-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-            cursor: pointer;
-        }
-
-    </style>
 </head>
 <body>
     <div class="container">
@@ -172,7 +17,7 @@ table {
         </div>
       
         <div id="search-results"></div>
-        <form id="license-form" action="{{ route('customer.store') }}" method="POST">
+        <form id="license-form" action="{{ route('store.clientsDetails') }}" method="POST">
             @csrf
             <h2>License Registration</h2>
             <label for="account_number">Account Number:</label>
@@ -292,73 +137,51 @@ table {
         function proceedToIndex() {
             window.location.href = "{{ route('index.home') }}";
         }
+
 //search algorithm
 function searchAccount() {
-            var accountNumber = document.querySelector('.search-bar input').value;
+    var accountNumber = document.querySelector('.search-bar input').value;
 
-            fetch(`/customer/search?account_number=${accountNumber}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    var resultsTable = '<table class="table table-striped"><tr><th>Account Number</th><th>TIN Number</th><th>Class Type</th><th>Details of Vending</th><th>Floor Area</th><th>Range</th><th>Address</th><th>License Name</th><th>Trading As</th><th>Owner Name</th></tr>';
-                    if (data.length > 0) {
-                        data.forEach(customer => {
-                            resultsTable += `<tr>
-                                <td>${customer.account_number}</td>
-                                <td>${customer.tin_number}</td>
-                                <td>${customer.class_type_goods}</td>
-                                <td>${customer.vending_details}</td>
-                                <td>${customer.floor_area}</td>
-                                <td>${customer.range_number}</td>
-                                <td>${customer.address_premises}</td>
-                                <td>${customer.license_name}</td>
-                                <td>${customer.trading_as}</td>
-                                <td>${customer.owner_name}</td>
-                            </tr>`;
-                        });
-                    } else {
-                        resultsTable += '<tr><td colspan="10">No results found</td></tr>';
-                    }
-                    resultsTable += '</table>';
-
-                    document.getElementById('search-results').innerHTML = resultsTable;
-
-                    // Add click event listeners to each row
-                    var rows = document.querySelectorAll('#search-results table tr');
-                    rows.forEach((row, index) => {
-                        if (index > 0) { // Skip the header row
-                            row.addEventListener('click', () => {
-                                redirectToIndexPage(data[index - 1]);
-                            });
-                        }
-                    });
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
+    fetch(`/customer/search?account_number=${accountNumber}`)
+        .then(response => response.json())
+        .then(data => {
+            var resultsTable = '<table class="table table-striped"><tr><th>Account Number</th><th>TIN Number</th><th>Class Type</th><th>Details of Vending</th><th>Floor Area</th><th>Range</th><th>Address</th><th>License Name</th><th>Trading As</th><th>Owner Name</th></tr>';
+            if (data.length > 0) {
+                data.forEach(customer => {
+                    resultsTable += `<tr data-id="${customer.id}">
+                        <td>${customer.account_number}</td>
+                        <td>${customer.tin_number}</td>
+                        <td>${customer.class_type_goods}</td>
+                        <td>${customer.vending_details}</td>
+                        <td>${customer.floor_area}</td>
+                        <td>${customer.range_number}</td>
+                        <td>${customer.address_premises}</td>
+                        <td>${customer.license_name}</td>
+                        <td>${customer.trading_as}</td>
+                        <td>${customer.owner_name}</td>
+                    </tr>`;
                 });
-        }
+            } else {
+                resultsTable += '<tr><td colspan="10">No results found</td></tr>';
+            }
+            resultsTable += '</table>';
 
-        function redirectToIndexPage(customer) {
-    console.log('Customer Data:', customer);  // Debugging line
-    const url = new URL('{{ route('index.home') }}', window.location.origin);
-    url.searchParams.append('account_number', customer.account_number);
-    url.searchParams.append('tin_number', customer.tin_number);
-    url.searchParams.append('class_type_goods', customer.class_type_goods);
-    url.searchParams.append('vending_details', customer.vending_details);
-    url.searchParams.append('floor_area', customer.floor_area);
-    url.searchParams.append('range_number', customer.range_number);
-    url.searchParams.append('address_premises', customer.address_premises);
-    url.searchParams.append('license_name', customer.license_name);
-    url.searchParams.append('trading_as', customer.trading_as);
-    url.searchParams.append('owner_name', customer.owner_name);
+            document.getElementById('search-results').innerHTML = resultsTable;
 
-    console.log('Redirecting to:', url.toString());  // Debugging line
-    window.location.href = url.toString();
+            // Adding click event listeners to each row
+            var rows = document.querySelectorAll('#search-results table tr[data-id]');
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    var customerId = this.getAttribute('data-id');
+                    window.location.href = `/produce/shoplicense/${customerId}`;
+                });
+            });
+        })
+        .catch(error => {
+            console.error('There was a problem fetching the data', error);
+        });
 }
+
 
     </script>
 </body>
